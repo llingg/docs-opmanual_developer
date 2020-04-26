@@ -3,7 +3,7 @@ version: 3
 jobs:
     build:
         docker:
-        - image: andreacensi/mcdp_books:daffy
+        - image: andreacensi/mcdp_books:daffy-devel
           environment:
               COLUMNS: 160
               TERM: xterm-256color
