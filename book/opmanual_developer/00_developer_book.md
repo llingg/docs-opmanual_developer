@@ -1,4 +1,4 @@
-# Duckietown Developer {#book:developer status=draft}
+# Duckietown Developer {#book:developer status=ready}
 
 This book is about how to become a developer in 
 Duckietown. It will guide you through the basics 
@@ -19,7 +19,7 @@ some exercises/activities to assess/improve your knowledge
 and prepare your environment for the next section.
 
 
-## Ready? {}
+## Ready?
 
 Let's start!
 
