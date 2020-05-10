@@ -21,7 +21,7 @@ jobs:
         - run:
             name: Compile
             command: |
-              mcdp-render --root .
+              mcdp-render --root . -c rparmake
 
         - run:
             name: Link check
