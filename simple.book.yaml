@@ -52,10 +52,10 @@ output_debug_dir: debug
 use_mathjax: true  
 raise_errors: true
 section_names_style: 'duckietown'
-resolve_references: true  # = True
-resolve_external: true  # = True
-only_refs: false  # = False
-do_last_modified: false  # = False
+resolve_references: true  
+resolve_external: true  
+only_refs: false  
+do_last_modified: false  
 generate_ast_pdf: false
 ignore_ref_errors: true
 permalink_prefix: opmanual_developer
