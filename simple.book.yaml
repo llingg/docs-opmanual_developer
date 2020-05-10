@@ -16,12 +16,14 @@ pdf_output:
     template_filename: &template 00_main_template.html 
     stylesheet: v_manual_ipad
     title: "Tablet version"
+    tags: [document]
   printable:
     out: duckuments-dist/opmanual_developer/ready-printable.pdf
     remove: ''
     template_filename: *template
     stylesheet: v_manual_blurb_ready
     title: "Printable version"
+    tags: [document]
 
 html_output: 
   ready:
@@ -34,6 +36,7 @@ html_output:
     title: "Readers version"
     likebtn: 
     wordpress_integration: false
+    tags: [document]
   draft:
     title: "Draft version"
 
@@ -43,7 +46,7 @@ html_output:
     out: duckuments-dist/opmanual_developer/draft
     out_single: duckuments-dist/opmanual_developer/draft.html
     stylesheet: v_manual_split_responsive
-    
+    tags: [draft]
     likebtn: 
     wordpress_integration: false
 
