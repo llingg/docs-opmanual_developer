@@ -1,4 +1,4 @@
-# Robot types {#sec:robot_types level=sec status=draft}
+# Robot types {#robot_types level=sec status=draft}
 
 This section of the book will introduce the basics of software
 development in Duckietown. The arguments presented in this section
@@ -7,3 +7,5 @@ Duckietown).
 
 
 <minitoc/>
+
+

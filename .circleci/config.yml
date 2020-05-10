@@ -20,7 +20,8 @@ jobs:
 
         - run:
             name: Compile
-            command: make compile-native-ci
+            command: |
+              mcdp-render --root .
 
         - run:
             name: Link check
