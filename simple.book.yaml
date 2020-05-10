@@ -30,8 +30,8 @@ html_output:
     remove: *remove-ready
     template_filename: *template
 
-    out: duckuments-dist/opmanual_developer/ready
-    out_single: duckuments-dist/opmanual_developer/ready.html
+    out: duckuments-dist/opmanual_developer/out
+    out_single: duckuments-dist/opmanual_developer/out.html
     stylesheet: v_manual_split_responsive
     title: "Readers version"
     likebtn: 
