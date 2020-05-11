@@ -11,6 +11,10 @@ jobs:
 
         resource_class: large
         steps:
+        - run:  
+           command: |
+            mkdir ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+        
         - checkout
         - run:
             name: Download resources
@@ -21,7 +25,7 @@ jobs:
         - run:
             name: Compile
             command: |
-              mcdp-render --root . # -c rparmake
+              mcdp-render --root . -c "rmake; rmake"
 
         - run:
             name: Link check
