@@ -1,12 +1,11 @@
-# Robot types {#sec:robot_types level=sec status=ready}
+# Developer Basics: Duckietown Shell {#sec:developer_basics_dts level=sec status=ready}
 
 Author: Andrea F. Daniele
 
 Maintainer: Andrea F. Daniele
 
-This section of the book will cover the list of main robot types
-avilable in Duckietown.
-
+This section of the book will introduce the `devel` command available on the
+duckietown shell.
 
 <minitoc/>
 
@@ -14,7 +13,6 @@ avilable in Duckietown.
 ## Hands on
 
 TODO: This is a templated subsection
-
 
 
 ## Ask the community
