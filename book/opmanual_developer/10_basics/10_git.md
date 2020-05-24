@@ -213,7 +213,7 @@ The command `git status` will always show you which changes are
 marked to be used for a new commit and which changes are not.
 Use the command
 
-    $ git commit -m "[COMMIT-MESSAGE]"
+    $ git commit -m "![COMMIT-MESSAGE]"
 
 to create a new commit. Replace `![COMMIT-MESSAGE]` with your
 notes about what changes this commit includes.
