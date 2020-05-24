@@ -1,11 +1,11 @@
-# Robot types {#sec:robot_types level=sec status=ready}
+# Robot types {#robot_types level=sec status=draft}
 
 Author: Andrea F. Daniele
 
 Maintainer: Andrea F. Daniele
 
-This section of the book will cover the list of main robot types
-avilable in Duckietown.
+This section of the book will cover the different types
+of robots available in Duckietown.
 
 
 <minitoc/>
