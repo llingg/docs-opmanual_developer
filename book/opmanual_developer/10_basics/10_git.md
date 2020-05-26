@@ -52,23 +52,23 @@ perform on a git project and a git project hosted on GitHub.com.
 
 A non-exhaustive list of terms commonly used in git follow.
 
-#### Repository
+#### **Repository**
 
 A repo (short for repository), or git project, encompasses the 
 entire collection of files and folders associated with a project, 
 along with each file’s revision history.
 
 
-#### Branch
+#### **Branch**
 
-Branches constitute threads of changes in your code. Though we
+Branches constitute threads of changes within a repository. Though we
 call them branches, do not try to force an analogy with tree 
 branches, they are similar in spirit but quite different in how 
 they work.
 
-It is impossible for a repository to exist without a branch, and
+A repository is not allowed to exist without a branch, and
 every operation inside a repository only makes sense in the context
-of a branch.
+of a branch (the _active_ branch).
 Inside a repository, you can have as many branches as you want, 
 but you always work on one branch at a time.
 Every git project has at least one main branch, usually called 
@@ -88,7 +88,7 @@ reported and whose patch will be released in the version `1.0.1`.
 Branch operations are performed through the command `git branch`.
 
 
-#### Commit
+#### **Commit**
 
 A commit is an atomic change in a repository. A commit is a set of
 changes to one or more files within your repository. Each commit is 
@@ -112,7 +112,7 @@ for commits. Every time you create a new commit, the pointer of the
 current branch advances to the newly created commit.
 
 
-#### Tag
+#### **Tag**
 
 A tag is a human friendly name for a commit but unlike branches, tags
 are read-only. Once created, they cannot be modified to point to
@@ -122,7 +122,7 @@ Tags are commonly used for labeling commits that constitute
 milestones in the project development timeline, for example a release.
 
 
-#### Fork
+#### **Fork**
 
 A fork is basically a copy of someone else's repository. 
 Usually, you cannot create branches or change code in other 
@@ -130,7 +130,7 @@ people's repositories, thats why you create your own copy of it.
 This is called `forking`.
 
 
-#### Remote
+#### **Remote**
 
 A git *remote* is a copy of your repository hosted by a git service
 provider, e.g. [GitHub](https://github.com). Remotes allow you to
@@ -142,18 +142,29 @@ over the internet.
 You can use the commands `git fetch` and `git push` to bring your
 local copy of the repository in sync with a remote, by downloading
 commits or uploading new commits respectively.
+    
+    
+#### **Pull Requests**
+
+If you are working on a secondary branch or if you forked a repository 
+and want to submit your changes for integration into the mainstream branch 
+or repository, you can open a so-called Pull Request (in short **PR**).
+
+A pull request can be seen as a three-step merge operation between two 
+branches where the changes are first _proposed_, then _discussed and adapted_
+(if requested), and finally _merged_.
 
 
 ### Common operations
 
-#### Fork a repository on GitHub
+#### **Fork a repository on GitHub**
 
 To fork (creating a copy of a repository, that does not belong to 
 you), you simply have to go to the repository's webpage and click 
 fork on the upper right corner.
 
 
-#### Clone a repository
+#### **Clone a repository**
 
 Cloning a repository is the act of creating a local copy of a remote
 repository. A repo is cloned only at the very beginning, when you
@@ -170,7 +181,7 @@ the same name of the repository and the entire history of commits
 will be downloaded onto your computer.
 
 
-#### Create a new branch
+#### **Create a new branch**
 
 The command for creating a new branch is a little bit 
 counter-intuitive, but you will get use to it.
@@ -185,7 +196,7 @@ after you issue this command, the newly created branch becomes
 your active branch.
 
 
-#### Working tree
+#### **Working tree**
 
 In git, we use the term *working tree* to indicate all the changes 
 that are not committed yet. You can think of it as your workspace.
@@ -193,13 +204,13 @@ When you create a new commit, the hash for the current working tree
 is computed and assigned to the new commit together with the changes
 since the last commit. The working tree clears as you commit changes.
 
-Remark: You cannot create commits from a clear working tree.
+Remark: You cannot create commits from a clean working tree.
 
 Use the command `git status` to inspect the status of your working
 tree.
 
 
-#### Create a new commit
+#### **Create a new commit**
 
 Unlike many git operations, a commit is not created by a single
 git command. There are two steps to follow. First, we mark all the 
@@ -224,7 +235,7 @@ for a change of interest, having good commit messages will be a
 game changer.
 
 
-#### Push changes
+#### **Push changes**
 
 Use the following command to *push* your local changes to the remote
 repository so that the two repositories can get in sync.
@@ -232,7 +243,7 @@ repository so that the two repositories can get in sync.
     $ git push origin ![BRANCH-NAME]
 
 
-### Fetch changes
+### **Fetch changes**
 
 If you suspect that new changes might be available on the remote
 repository, you can use the command 
@@ -250,7 +261,7 @@ Use the command `git pull origin/![BRANCH-NAME]` to perform *fetch*
 and then *merge*.
 
 
-#### Delete branches
+#### **Delete branches**
 
 Unlike the vast majority of git commands, git delete does not
 work on the current branch. You can delete other branches by running
@@ -266,6 +277,24 @@ To propagate the deletion of a branch to the remote repository,
 run the command:
 
     $ git push origin --delete ![BRANCH-NAME]
+
+
+#### **Open a Git Issue**
+
+If you are experiencing issues with any code or content of a repository 
+(such as this operating manual you are reading right now), you can submit 
+issues. For doing so go to the dashboard of the corresponding repository 
+and press the `Issues` tab where you can open a new request.
+
+For example you encounter a bug or a mistake in this operating manual, 
+please visit this repository's 
+[Issues page](https://github.com/duckietown/docs-opmanual_developer/issues) 
+to report an issue.
+
+Git Issues are a crucial part of the life cycle of a software product, as
+they constitute a feedback loop that goes directly from the end-user to the
+product developers. You don't have to be a developer or an expert in software
+engineering to open an Issue. 
 
 
 ## Hands on
@@ -290,14 +319,11 @@ You can gain access to GitHub by creating an account on
 A short GitHub tutorial is available at 
 [this link](https://guides.github.com/activities/hello-world/).
 
-We higly suggest that you setup an SSH key for secure passwordless
-access to GitHub by following these steps.
+It is higly suggested that you setup an SSH key for secure passwordless
+access to GitHub by following these steps:
 
-See: [Basic SSH config](+software_reference#github-access).
-
-See: [Key pair creation](+software_reference#howto-create-key-pair).
-
-See: [Adding public key on Github](+software_reference#github-access).
+1. [Generate a new SSH key](https://help.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+2. [Add SSH key to your GitHub account](https://help.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account).
 
 
 ## Ask the community
