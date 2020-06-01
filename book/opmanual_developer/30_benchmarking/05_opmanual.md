@@ -108,7 +108,7 @@ However, it is suggested to develop as you wish and then for the actual Benchmar
 Nevertheless, at the moment if your Duckiebot does whatever it wants when all is running and you are sure it is not because of your code, try to reduce the data recording to the essential. This means, first just don't run the diagnostic toolbox as this information is not the most crucial. If this still does not help, just record the bag from the localization system as this will give you at least some information about the actual performance of the behaving.
 In the case where you cannot record all the data, just ignore the according steps in the data analization and complete the ones based on the bags you actually have. 
 As experiment have shown that the data collected of the diagnostic toolbox do not really change from experiment to experiment, you can also run one experiment also just running the diagnostic toolbox and then run this analysis on the data collected there.
-The same can be done with the bag that is collected on the Duckiebot. However, there it is recommended to run at least 4 experiments where only the data from the Duckiebot is recorded as the data does change slightly depending on the experiment. 
+The same can be done with the bag that is collected on the Duckiebot. However, for the data from the Duckiebot it is necessary to run as many experiments as needed such that the standard deviation drops below a certain threshold. 
 
 So a possible procedure as long as the localization system is not very efficient is to first run some experiments recording just a bag from the localization system, run one experiment running the diagnostic toolbox next to it and then run a couple of experiments recording the bag directly on the Duckiebot.
 
