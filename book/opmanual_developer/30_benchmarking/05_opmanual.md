@@ -46,19 +46,19 @@ Set up the offline localization following the instructions found [here](https://
 * On your local computer create a folder called `bag`
 * (Fork and) clone the [behaviour-benchmarking](https://github.com/llingg/behaviour-benchmarking) repository
 * Make sure that your dts command version is the same version as your Duckiebot is flashed (ToDo: how do I guarantee that diagnostics did not change?? duckietown shell commands commit 'commit 62809665b108832cdf58544ebb1d7a1d5ed997fc')
-* Be sure that `dt-core`, `dt-car-interface`, `dt-duckiebot-interface`, `dt-ros-commons` images are updated according to the version you are using. 
+* Be sure that `dt-core`, `dt-car-interface`, `dt-duckiebot-interface`, `dt-ros-commons` images are updated according to the version you are using.
 If not, for daffy pull:
     * `docker -H BOTNAME.local pull duckietown/dt-core:daffy-arm32v7@sha256:4c7633c2041f5b7846be2346e0892c9f50987d2fd98d3479ec1a4cf378f52ee6`
     * `docker -H BOTNAME.local pull duckietown/dt-car-interface:daffy-arm32v7@sha256:e3db984157bf3a2b2d4ab7237536c17b37333711244a3206517daa187c143016`
     * `docker -H BOTNAME.local pull duckietown/dt-duckiebot-interface:daffy-arm32v7@sha256:94a9defa553d1e238566a621e084c4b368e6a9b62053b02f0eef1d5685f9ea73`
     * `docker -H BOTNAME.local pull duckietown/dt-ros-commons:daffy-arm32v7@sha256:20840df4cd5a8ade5949e5cfae2eb9b5cf9ee7c0`
-    
+
 If not, for Master19 pull:
     * `docker -H BOTNAME.local pull duckietown/dt-core:daffy-arm32v7@sha256:4c7633c2041f5b7846be2346e0892c9f50987d2fd98d3479ec1a4cf378f52ee6`
     * `docker -H BOTNAME.local pull duckietown/dt-car-interface:daffy-arm32v7@sha256:e3db984157bf3a2b2d4ab7237536c17b37333711244a3206517daa187c143016`
     * `docker -H BOTNAME.local pull duckietown/dt-duckiebot-interface:daffy-arm32v7@sha256:94a9defa553d1e238566a621e084c4b368e6a9b62053b02f0eef1d5685f9ea73`
     * `docker -H BOTNAME.local pull duckietown/dt-ros-commons:daffy-arm32v7@sha256:20840df4cd5a8ade5949e5cfae2eb9b5cf9ee7c0`
- 
+
 Please note, that you do not have to pull the specific tags above if you want to test a new version of any of the containers. However if you want to test a contribution to dt-core which you wrote (for example a new line_detector) it is recommended to pull the according images above.
 
 * If all the images are at the right version you can start the following steps:
@@ -102,12 +102,12 @@ However, it is suggested to develop as you wish and then for the actual Benchmar
   However to be able to compare your Software with another one in any type of Benchmark, you first need to run at least 2 experiments. For each experiment there will be some recorded bags etc which then will be processed, analyzed and evaluated.
   The resulting evaluations of each experiment you run will then be again analyzed and for all the meaningful measurements, the means, medians and standard deviations are calculated. For each meaningful measurement the [coefficient of variation](https://www.researchgate.net/post/What_do_you_consider_a_good_standard_deviation) is calculated and if this value is below 1 you get a green light to compute the final Benchmarking report. This means that you have to run at least to experiments and then start running the notebook that calculates the variation of your computed results after each new experiment. So the amount of experiments that need to be run depend on the stability of your results. As soon as you get a green light of all the important results, compute the mean of all the results over all the experiments you ran (at least two).
   With this .yaml file including all the means, you are finally ready to run the comparison/analysis of your results. This will then generate a pdf report that analysis your solution as well as compares it to the results of another Benchmark you selected(can be any Benchmark ran of the same type). Based on the final report file you get at the end you can easily tell if your Software solution did improve the overall Performance or not and where your solution is better and where it is worse.
-  
+
   Note: The procedure explained below runs the diagnostic toolbox, records a bag from the localization system, records a bag directly on the Duckiebot and at the same time the acquisition bridge. Running for example lane_following or indefinite_navigation whilst collecting all that data might not work well as there is not enough CPU. This is because the localization system is at the moment not very efficient. However, this will change in the near future and this issue will be solved.
 Nevertheless, at the moment if your Duckiebot does whatever it wants when all is running and you are sure it is not because of your code, try to reduce the data recording to the essential. This means, first just don't run the diagnostic toolbox as this information is not the most crucial. If this still does not help, just record the bag from the localization system as this will give you at least some information about the actual performance of the behaving.
-In the case where you cannot record all the data, just ignore the according steps in the data analization and complete the ones based on the bags you actually have. 
+In the case where you cannot record all the data, just ignore the according steps in the data analization and complete the ones based on the bags you actually have.
 As experiment have shown that the data collected of the diagnostic toolbox do not really change from experiment to experiment, you can also run one experiment also just running the diagnostic toolbox and then run this analysis on the data collected there.
-The same can be done with the bag that is collected on the Duckiebot. However, for the data from the Duckiebot it is necessary to run as many experiments as needed such that the standard deviation drops below a certain threshold. 
+The same can be done with the bag that is collected on the Duckiebot. However, for the data from the Duckiebot it is necessary to run as many experiments as needed such that the standard deviation drops below a certain threshold.
 
 So a possible procedure as long as the localization system is not very efficient is to first run some experiments recording just a bag from the localization system, run one experiment running the diagnostic toolbox next to it and then run a couple of experiments recording the bag directly on the Duckiebot.
 
@@ -155,8 +155,9 @@ So a possible procedure as long as the localization system is not very efficient
 
 ## Place your Duckiebot within the map:
   Place your Duckiebot in the beginning of the straight part that is _on the bottom of the loop_ relative to the origin of the coordinate system (see image below) of the loop on the outer line such that the Duckiebot drives around the the loop counter-clockwise.
+  Below you see an image on where you should place the Duckiebot, in this image the origin of the global coordinate frame of the map (so the point from where you measured the distances of the April Tags when you added them to the map) lies in the bottom right (in the corner near the Duckiebot).
 
-  ToDo add image to where to place DB
+  ![db_start_pos](/media/db_start_pos.jpg){ width=50% }
 
 ## Prepare 4 terminals:
   Make sure that you carefully read through the steps and the `note` section below before starting up everything. It is important that you start recording the bags at roughly the same time and press `a` to start lane following or indefinite navigation straight after. Therefor first starting the diagnostic toolbox, then start recording both the bags and straight after start lanefollowing by pressing 'a'.
