@@ -44,7 +44,6 @@ Set up the offline localization following the instructions found [here](https://
 
 ## Software preparation
 * On your local computer create a folder called `bag`
-* (Fork and) clone the [behaviour_benchmarking](https://gitlab.com/llingg/behaviour_benchmarking/-/tree/master) repository
 * (Fork and) clone the [behaviour-benchmarking](https://github.com/llingg/behaviour-benchmarking) repository
 * Make sure that your dts command version is the same version as your Duckiebot is flashed (ToDo: how do I guarantee that diagnostics did not change?? duckietown shell commands commit 'commit 62809665b108832cdf58544ebb1d7a1d5ed997fc')
 * Be sure that `dt-core`, `dt-car-interface`, `dt-duckiebot-interface`, `dt-ros-commons` images are updated according to the version you are using. 
@@ -128,7 +127,7 @@ So a possible procedure as long as the localization system is not very efficient
     TODO: at the moment Hat and Pi not detected! Figure out why.
 
   * When the Docker Container has finished, visit: `http://BOTNAME.local:8082/config` and download the .yaml file with your information in the name.
-  * Place the .yaml file within the _data/BenchmarkXY_ folder of your behaviour_benchmarking repository.
+  * Place the .yaml file within the _data/BenchmarkXY_ folder of your behaviour-benchmarking repository.
   * Furthermore, set up your own [autolab fleet rooster](https://docs.duckietown.org/daffy/opmanual_autolab/out/autolab_fleet_roster.html)
 
 
