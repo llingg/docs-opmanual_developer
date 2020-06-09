@@ -4,6 +4,7 @@ Author: Linus Lingg
 
 Maintainer: Linus Lingg
 
+## Introduction
 This section of the book focuses on the concept of behaviour benchmarking in Duckietown.
 
 Below you can see the general architecture that was set up for the Behaviour Benchmarking.
@@ -34,5 +35,11 @@ The result of the HW check you can see here, the verdict means that all of the q
 
 To design a Behaviour Benchmark in the future, all the needed packages can be found in [this repository](https://github.com/llingg/behaviour-benchmarking), simply (fork and) clone it and run the different packages.
 Within the readme file of this repository it is all explained on how to proceed to set up a Benchmark.
+
+## General Information
+
+ToDo:
+List packages (with short description)
+List notebooks (with short description)
 
 <minitoc/>
