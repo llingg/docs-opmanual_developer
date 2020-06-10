@@ -7,7 +7,7 @@ Maintainer: Linus Lingg
 <minitoc/>
 
 ## Introduction
-This section of the book focuses on the concept of behaviour benchmarking in Duckietown. There will be first a brief general introduction to introduce the general architecture of the Behaviour Benchmarking. The most important parts are explained as well as some general information is given.
+This section of the book focuses on the concept of behaviour benchmarking in Duckietown. There will be first a brief general introduction to introduce the general architecture of the Behaviour Benchmarking. The most important parts are explained as well as some general information is given. The [presentation](https://drive.google.com/file/d/17NK93umYwn4AWNISMRx_h7t9KTEcVVa4/view?usp=sharing) as well as the [repository](https://github.com/llingg/behaviour-benchmarking) corresponding to the Behaviour Benchmarking are also available.
 
 ### General Architecture
 
@@ -67,6 +67,8 @@ All the packages created for the Behvaiour Benchmarkin can be found [here](https
   
 ## Goal
 The goal of this Behaviour Benchmarking is that for each behaviour and each major version (Ex: Master19, Daffy, Ente etc) there is a huge data set out of which the mean of all the measurements is calculated to build a stable and very reliable refference Benchmark. The developer can then compare its contribution to the results achieved by the global Duckietown performance. 
+
+At the moment the user is asked to upload its recorded bags to this [link](https://drive.google.com/drive/folders/1pkjvPl8VyOj8K6jeUHXSE0XNPyVqgQDg?usp=sharing). However, this link should be changed as soon as possible as the storage is limited. The data storage should be automated anyways.
 
 
 ## Future development
