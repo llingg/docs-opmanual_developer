@@ -105,8 +105,10 @@
 
   So a possible procedure as long as the localization system is not very efficient to first run some experiments recording just a bag from the localization system, run one experiment running the diagnostic toolbox next to it and then one experiments recording the bag directly on the Duckiebot.
   The Notebooks analyzing the data can handle all kind of different data recording configurations.
+  
+For each Notebook there is an Example notebook that shows the results/outputs achieved by the notebooks when running them with actual data.
 
-  ToDo: explain more
+Please note that if you don't have a localization system available, just ignore everything related to the localization system. Then within the notebooks, just upload the Duckiebot relative pose estimation .json file called `BAGNAME_duckiebot_lane_pose.json` created by the analyze_rosbag package and take these measurements as ground truth of the relative Duckiebot pose. In this case all the measurements about the speed, tiles covered per second etc won't be calculated. However you can still get a nice idea about your performance based on the estimations and the engineering data recorded.
 
 
 # Lane Following Benchmark procedure {#sec:benchmarking_introduction level=sec status=ready}
@@ -166,7 +168,6 @@ Set up the offline localization following the instructions found [here](https://
   * `docker -H BOTNAME.local pull duckietown/dt-car-interface:daffy-arm32v7@sha256:e3db984157bf3a2b2d4ab7237536c17b37333711244a3206517daa187c143016`
   * `docker -H BOTNAME.local pull duckietown/dt-duckiebot-interface:daffy-arm32v7@sha256:94a9defa553d1e238566a621e084c4b368e6a9b62053b02f0eef1d5685f9ea73`
   * `docker -H BOTNAME.local pull duckietown/dt-ros-commons:daffy-arm32v7@sha256:20840df4cd5a8ade5949e5cfae2eb9b5cf9ee7c0`
-
 
 
   If not, for Master19 pull:
@@ -359,12 +360,17 @@ However, it is suggested to develop as you wish and then for the actual Benchmar
           * `dts devel build -f --arch amd64`
     * Then run it with:
           * `docker run -v path_to_bag_folder:/data -e DUCKIEBOT=AUTOBOT_NAME -e BAGNAME=BAGNAME_duckiebot -it --rm duckietown/behaviour-benchmarking:v1-amd64`
-    * This will create five `.json`files within the `bag`folder that will be used for the Benchmarking later. The _.json_ files are named: `BAGNAME_duckiebot_constant.json`, `BAGNAME_duckiebot_lane_pose.json`,`BAGNAME_duckiebot_node_info.json`,`BAGNAME_duckiebot_segment_count.json`, `BAGNAME_duckiebot_latencies.json`
+    * This will create five `.json`files within the `bag`folder that will be used for the Benchmarking later. The _.json_ files are named: 
+      * `BAGNAME_duckiebot_constant.json`: containing the value of each of the constants that was used for the experiment
+      * `BAGNAME_duckiebot_lane_pose.json`: containing the information about the relative pose estimation of the Duckiebot
+      * `BAGNAME_duckiebot_node_info.json`: containing information about the update frequency of the different nodes, the number of connections etc)
+      * `BAGNAME_duckiebot_segment_count.json`: containing information about the number of segments detected at each time stamp
+      * `BAGNAME_duckiebot_latencies.json`: contains information about the latency measured from the very beginning up to and including the detector node
+      
     * Make sure that those files are readable by opening the `bag` folder in a terminal and running:
         * `sudo chmod 777 FILENAME.json`
     * Then place all those files in the folder `~/behaviour-benchmarking/data/BenchmarkXY/json`
 
-  ToDo: explain the results that are  given after the processing, like explain what the latency exactly is etc. Specially about the .json files
 
 
 ##  Result analysis preparation:
@@ -399,7 +405,27 @@ However, it is suggested to develop as you wish and then for the actual Benchmar
 
   * First open the notebook called `95-Trajectory-statistics` and follow the instructions there. To run this Notebook, you will need the file called `AutobotAPRILTAGNB.yaml` found in the folder `~/behaviour-benchmarking/data/BenchmarkXY/yaml/graph_optimizer` (where APRILTAGNR is the number of the April Tag that is placed on top of your Duckiebot) and the file `BAGNAME_db_estimation.yaml` found within the folder `~/behaviour-benchmarking/data/BenchmarkXY/yaml/post_processor`.
   It will result in a .yaml file called BAGNAME__benchmark_results_test_XY.yaml where XY is the number of the test run. In this file you will find all kind of results considering the actual performance of the behaviour. The file will be stored within the folder `~/behaviour-benchmarking/data/BenchmarkXY/benchmarks/same_bm` and will be further analyzed below.
-  This notebook extracts all kind of data measured by the localization system like the actual trajectory, the absolute mean lane offset of the Duckiebot, the number of tiles the Duckiebot covered etc. For more details on what exactly is analyzed and how the analysis is done, please have a look at the Notebook itself.
+  This notebook extracts all kind of data measured by the localization system like the actual trajectory, the absolute mean lane offset of the Duckiebot, the number of tiles the Duckiebot covered etc. For more details on what exactly is analyzed and how the analysis is done, please have a look at the Notebook itself. However, below see below for a list of all computed measurements:
+      * The mean of the offset (distance and angle) of the Duckiebot in respect to the center of the lane [m]
+      * The number of rounds completed (entirely completed by the center of the April Tag placed on the localization standoff on your Duckiebot
+      * The number of tiles covered (center of April Tag coompletely passed the tile)
+      * Avg time needed per tile in seconds
+      * Length of the Benchmark in seconds
+      * Actual length of the benchmark in seconds
+      * Mean absolute lane offset measured by Watchtowers (ground truth) [m]
+      * Std of the absolute lane offset measured by Watchtowers (ground truth) [m]
+      * Mean absolute relative angle measured by Watchtowers (ground truth) [deg]
+      * Std of the absolute relative angle measured by Watchtowers (ground truth) [deg]
+      * Mean absolute lane offset measured by the Duckiebot [m]
+      * Std of the absolute lane offset measured by the Duckiebot [m]
+      * Mean absolute relative angle measured by the Duckiebot [deg]
+      * td of the absolute relative angle measured by the Duckiebot [deg]
+      * Mean of the absolute difference between lane offset measured by the Duckiebot and by the Watchtowers (ground truth) [m]
+      * Std of the absolute difference between lane offset measured by the Duckiebot and by the Watchtowers (ground truth) [m]
+      * Mean of the absolute difference between the relative angle measured by the Duckiebot and by the Watchtowers (ground truth) [deg]
+      * Std of the absolute difference between the relative angle measured by the Duckiebot and by the Watchtowers (ground truth) [deg]
+
+  
 
   * Now it is time to see if you have collected enough data, for this, please open and run the notebook `97-compare_calc_mean_benchmarks`. This will open all your result .yaml files you produced above and check if the data is meaningful. This means that it calculates the standard deviation of some of the measurements over the different experiments and puts it in relation with the mean. If the standard deviation for all of the considered measurements is small enough it will then produce a `BAGNAME_benchmark_final_results.yaml` file which includes the mean values over all the experiments ran and saves it in the folder `~/behaviour-benchmarking/data/BenchmarkXY/benchmarks/final`.
   The Notebook produces some nice visualizations that show the user if its data is stable enough or not and why it is important to have stable data. The user literally gets a green or a red light weather he is ready to actually run the evaluation of the performance or if more data needs to be collected.
@@ -409,9 +435,16 @@ However, it is suggested to develop as you wish and then for the actual Benchmar
 
     * Software information of all the containers like: container name, image name and tag, the base image of the container, the architecture of the container, the branch etc. as well as the constants that were  set within the Duckiebot for example the gain, the trim factor etc.
     These things do not change within the same Benchmark, this means for all the tests you are running with the specific software version all this information remains the same. Therefore, this data is called `static`
-    * Engineering data analysis like the update frequency of the different nodes, the number of segments detected over time, the latency up to and including the `detector_node`, as well as the CPU usage, the Memory usage and the NThreads used by each container. This data changes (at least slightly) between two different tests of the same Benchmark which is why the mean of this data of all the tests ran for one Benchmark is calculated later.
+    * Engineering data analysis like the update frequency of the different nodes, the number of segments detected over time, the latency up to and including the `detector_node`, as well as the total overall performance information (CPU usage, the Memory usage and the NThreads). Moreover it includes total performance information of each node of container dt-core. This data changes (at least slightly) between two different tests of the same Benchmark which is why the mean of this data of all the tests ran for one Benchmark is calculated later.
+    * Number of experiments ran
+    * Runtimes of different experiments
+    * Info about if enough data collected
+    * Analysis of all data from Notebook 95 (Mean, Median, Std, CV etc.)
+    * Information about the trajectories
+
 
   * Then you are finally ready to compare your Benchmark with another one of the same type. For this please run the notebook ´ 96-compare_2_benchmarks´. This notebook will guide you through the analysis and show you the comparison of the two Benchmarks you are comparing. In there you find a nice summary of all the measured results, the metric used and the final results.
+  Please hava look at the notebook 96 [example](https://github.com/llingg/behaviour-benchmarking/blob/v1/notebooks/96-compare_2_benchmarks-Example.ipynb) for further details about what the final report includes.
 
 
 
