@@ -104,7 +104,7 @@
   The same can be done with the bag that is collected on the Duckiebot.
 
   So a possible procedure as long as the localization system is not very efficient to first run some experiments recording just a bag from the localization system, run one experiment running the diagnostic toolbox next to it and then one experiments recording the bag directly on the Duckiebot.
-  The Notebooks analyzing the data can handle all kind of different data recording configurations.
+  The Notebooks analyzing the data can handle all kind of different data recording configurations. However, it is important to say that the more experiments that were run with your code the more reliable the data and therefore, the more accurate the performance scoring.
   
 For each Notebook there is an Example notebook that shows the results/outputs achieved by the notebooks when running them with actual data.
 
@@ -430,6 +430,7 @@ However, it is suggested to develop as you wish and then for the actual Benchmar
   * Now it is time to see if you have collected enough data, for this, please open and run the notebook `97-compare_calc_mean_benchmarks`. This will open all your result .yaml files you produced above and check if the data is meaningful. This means that it calculates the standard deviation of some of the measurements over the different experiments and puts it in relation with the mean. If the standard deviation for all of the considered measurements is small enough it will then produce a `BAGNAME_benchmark_final_results.yaml` file which includes the mean values over all the experiments ran and saves it in the folder `~/behaviour-benchmarking/data/BenchmarkXY/benchmarks/final`.
   The Notebook produces some nice visualizations that show the user if its data is stable enough or not and why it is important to have stable data. The user literally gets a green or a red light weather he is ready to actually run the evaluation of the performance or if more data needs to be collected.
   If the standard deviation is too high, please run another experiment, complete the first step of the result computation and run this notebook again.
+  If not, please upload the resulting yaml file in the `Results` folder found [here](https://drive.google.com/drive/folders/1pkjvPl8VyOj8K6jeUHXSE0XNPyVqgQDg?usp=sharing)
 
   The .yaml file produced holds the following information:
 
@@ -445,7 +446,7 @@ However, it is suggested to develop as you wish and then for the actual Benchmar
 
   * Then you are finally ready to compare your Benchmark with another one of the same type. For this please run the notebook ´ 96-compare_2_benchmarks´. This notebook will guide you through the analysis and show you the comparison of the two Benchmarks you are comparing. In there you find a nice summary of all the measured results, the metric used and the final results.
   Please hava look at the notebook 96 [example](https://github.com/llingg/behaviour-benchmarking/blob/v1/notebooks/96-compare_2_benchmarks-Example.ipynb) for further details about what the final report includes.
-
+  
 
 
 ### Test the code stability
